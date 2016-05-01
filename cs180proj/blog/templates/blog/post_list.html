@@ -3,6 +3,7 @@
         <title>CS180 proj</title>
     </head>
     <body>
+    	<p>Welcome, {{user.username}}.</p>
         <h3>Welcome to our CS180 project!</h3>
         <p>Group Members:</p>
         <p>Brett Wing</p>
@@ -10,7 +11,7 @@
         <p>David Fukada</p>
         <p>Antonio Tosti</p>
         <h3>LINKS FOR DAYS!</h3>
-        <a href="127.0.0.1:8000/admin/">ADMIN!</a>
+        <a href="{% url 'admin:index' %}">ADMIN!</a>
         <br></br>
         <a href="127.0.0.1:8000/admin/">BLOG!</a>
     </body>
