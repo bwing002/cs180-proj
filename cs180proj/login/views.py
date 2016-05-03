@@ -16,7 +16,7 @@ def login_user(request):
 	if user is not None:
 		if user.is_active:
 			login(request, user)
-			return HttpResponseRedirect(request.REQUEST.get('next',''))
+			return HttpResponseRedirect('/')#request.REQUEST.get('next',''))
     return render(request,'login/login.html', context_instance=RequestContext(request))
 @login_required(login_url='/login/')
 
