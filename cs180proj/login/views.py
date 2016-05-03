@@ -1,7 +1,6 @@
 from django.http import *
 from django.shortcuts import render, redirect
 from django.template import RequestContext
-#from birthdayreminder.models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
