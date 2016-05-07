@@ -3,16 +3,19 @@
         <title>CS180 proj</title>
     </head>
     <body>
-    	<p>Welcome, {{user.username}}.</p>
-        <h3>Welcome to our CS180 project!</h3>
-        <p>Group Members:</p>
-        <p>Brett Wing</p>
-        <p>Alex Mah</p>
-        <p>David Fukada</p>
-        <p>Antonio Tosti</p>
-        <h3>LINKS FOR DAYS!</h3>
-        <a href="{% url 'admin:index' %}">ADMIN!</a>
-        <br></br>
-        <a href="127.0.0.1:8000/admin/">BLOG!</a>
+    	<h2>Welcome, {{user.username}}.</h2>
+        <form action="/logout">
+            <input type="submit" value="Log Out">
+        </form>
+        <form action="/profile/edit/">
+            <input type="submit" value="Edit Profile">
+        </form>
+        <h2>PROFILE PICTURE!</h2>
+	<img src ="http://i.imgur.com/eJw1mP2.png" alt="slappa da bass" style="width:304px;height:228px;">
+        <h2>Profile Details</h2>
+        <p>Name: </p>
+        <p>Sex : </p>
+        <p>Date of Birth: </p>
+        <p>Email: {{user.email}}.</p>
     </body>
 </html>
