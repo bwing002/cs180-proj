@@ -67,4 +67,6 @@ def login_user(request):
 def post_list(request):
     return render(request, 'login/post_list.html', {})
 
+def profile(request):
+  return render(request, 'login/profile.html', {})
 
