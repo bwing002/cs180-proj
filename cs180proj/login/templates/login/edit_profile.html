@@ -13,7 +13,24 @@
         <h2>PROFILE PICTURE!</h2>
 	<img src ="http://i.imgur.com/eJw1mP2.png" alt="slappa da bass" style="width:304px;height:228px;">
         <h2>Profile Details</h2>
-        <p>Name:{{user.first_name}} </p>
+        <p> Name :{{ user.first_name }} </p>
+        <p> </p>
+        <p> </p>
+        <p> </p>
+        <p> </p>
+        <p> </p>
+{% block content %}
+        <!--<form method="post"  action=".">{% csrf_token %}
+           <input type="submit" value="Update" />
+        </form>-->
+    <form method="post" action=".">{% csrf_token %}
+        <table border="0">
+            {{ form.value }}
+        </table>
+        <input type="submit" value="Update" />
+    </form>
+
+{% endblock %}
         <p>Sex : </p>
         <p>Date of Birth: </p>
         <p>Email: {{user.email}}.</p>

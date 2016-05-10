@@ -10,6 +10,7 @@ class RegistrationForm(forms.Form):
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Email address"))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password"))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password (again)"))
+    first_name = forms.CharField(widget=forms.TextInput(attrs=dict(required=True,max_length=30)), label=_("First Name"))
  
     def clean_username(self):
         try:

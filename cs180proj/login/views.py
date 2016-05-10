@@ -20,7 +20,8 @@ def register(request):
             user = User.objects.create_user(
             username=form.cleaned_data['username'],
             password=form.cleaned_data['password1'],
-            email=form.cleaned_data['email']
+            email=form.cleaned_data['email'],
+            first_name=form.cleaned_data['first_name'],
             )
             return HttpResponseRedirect('/register/success/')
     else:
@@ -70,3 +71,9 @@ def post_list(request):
 def profile(request):
   return render(request, 'login/profile.html', {})
 
+def edit_profile(request):
+  return render(request, 'login/edit_profile.html', {})
+
+def change_name(request, first_name):
+   # list
+    
