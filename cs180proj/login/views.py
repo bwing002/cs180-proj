@@ -4,6 +4,7 @@ from django.template import RequestContext
 #from birthdayreminder.models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from .forms import UpdateInformation
 # Create your views here.
 
 #views.py
@@ -74,6 +75,16 @@ def profile(request):
 def edit_profile(request):
   return render(request, 'login/edit_profile.html', {})
 
-def change_name(request, first_name):
-   # list
-    
+def change_name(request):
+    if request.method == "POST":
+        form = UpdateInformation(request.POST)
+        if form.is_valid():
+           user = request.user
+           user.first_name = request.POST['first_name']
+           user.last_name = request.POST['last_name']
+           user.save()
+           return HttpResponseRedirect('/profile')
+    else:
+         User = UpdateInformation()
+    return render(request, 'login/edit_profile.html', {'form': form})
+

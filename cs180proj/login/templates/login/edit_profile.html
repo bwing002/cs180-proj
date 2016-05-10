@@ -7,8 +7,8 @@
         <form action="/logout">
             <input type="submit" value="Log Out">
         </form>
-        <form action="/profile/edit/">
-            <input type="submit" value="Edit Profile">
+        <form action="/profile/">
+            <input type="submit" value="Profile">
         </form>
         <h2>PROFILE PICTURE!</h2>
 	<img src ="http://i.imgur.com/eJw1mP2.png" alt="slappa da bass" style="width:304px;height:228px;">
@@ -23,13 +23,17 @@
         <!--<form method="post"  action=".">{% csrf_token %}
            <input type="submit" value="Update" />
         </form>-->
-    <form method="post" action=".">{% csrf_token %}
-        <table border="0">
-            {{ form.value }}
-        </table>
+<!--
+    <form method="POST" action=/change_name/>{% csrf_token %}
+            {{ form.as_p }}
         <input type="submit" value="Update" />
     </form>
-
+-->
+        <form method="POST" action="/change_name/">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update</button>
+        </form>
 {% endblock %}
         <p>Sex : </p>
         <p>Date of Birth: </p>
