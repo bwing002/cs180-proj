@@ -3,6 +3,7 @@
         <title>CS180 proj</title>
     </head>
     <body>
+        {% if user.is_authenticated %}
     	<h2>Welcome, {{user.username}}.</h2>
         <form action="/logout">
             <input type="submit" value="Log Out">
@@ -17,5 +18,8 @@
         <p>Sex : </p>
         <p>Date of Birth: </p>
         <p>Email: {{user.email}}.</p>
+        {% else %}
+        <meta http-equiv="refresh" content="0; URL=/login">
+        {% endif %}
     </body>
 </html>
