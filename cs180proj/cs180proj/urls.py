@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'', include('login.urls')),
     #url(r'',home),
     url(r'^accounts/profile/$', profile), #FIXME:Now directs to the post_list, is this what we have as a profile?
-    url(r'^login/$', django_views.login),
+	url(r'^accounts/profile/edit$',edit_profile),
+	url(r'^login/$', django_views.login),
     #url(r'^login/$', 'admin.auth.views.login'), #Old, not sure where this references, but it doesn't exist
 ]

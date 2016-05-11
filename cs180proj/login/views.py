@@ -72,10 +72,10 @@ def post_list(request):
 def profile(request):
   return render(request, 'login/profile.html', {})
 
-def edit_profile(request):
-  return render(request, 'login/edit_profile.html', {})
+#def edit_profile(request):
+#  return render(request, 'login/edit_profile.html', {})
 
-def change_name(request):
+def edit_profile(request):
     if request.method == "POST":
         form = UpdateInformation(request.POST)
         if form.is_valid():
@@ -83,8 +83,11 @@ def change_name(request):
            user.first_name = request.POST['first_name']
            user.last_name = request.POST['last_name']
            user.save()
-           return HttpResponseRedirect('/profile')
+           return HttpResponseRedirect('/accounts/profile/')
     else:
-         User = UpdateInformation()
-    return render(request, 'login/edit_profile.html', {'form': form})
+        form = UpdateInformation()
+	variables = RequestContext(request, {
+    'form': form, 'user': request.user
+    })
+    return render_to_response('login/edit_profile.html',variables,)
 
