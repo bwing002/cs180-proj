@@ -35,6 +35,11 @@ def register(request):
     'registration/register.html',
     variables,
     )
+
+def home(request):
+    return render_to_response(
+    '../cs180proj/templates/home/home.html',
+    )
  
 def register_success(request):
     return render_to_response(

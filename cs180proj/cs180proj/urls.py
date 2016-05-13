@@ -19,19 +19,9 @@ from login.views import *
 from django.contrib.auth import views as django_views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    #url(r'^$', django_views.login),#
-    url(r'^$', post_list),
-    url(r'^home/$', home), #FIXME: Our home is the login screen?
-    url(r'^register/$', register),
-    url(r'^register/success/$', register_success),
-    url(r'^register/login/$', django_views.login), #Redirects to /login/
-    url(r'^logout/$', logout_page),
-    url(r'', include('blog.urls')),
+    url(r'^admin/', admin.site.urls), #Default
     url(r'', include('login.urls')),
-    #url(r'',home),
-    url(r'^accounts/profile/$', profile), #FIXME:Now directs to the post_list, is this what we have as a profile?
-	url(r'^accounts/profile/edit$',edit_profile),
-	url(r'^login/$', django_views.login),
-    #url(r'^login/$', 'admin.auth.views.login'), #Old, not sure where this references, but it doesn't exist
+    url(r'^$', home),
+    url(r'^accounts/profile/$', profile), #Put these in profile
+	url(r'^accounts/profile/edit$', edit_profile),
 ]
