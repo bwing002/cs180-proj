@@ -36,9 +36,9 @@ def register(request):
     variables,
     )
 
-def home(request):
+def index(request):
     return render_to_response(
-    '../cs180proj/templates/home/home.html',
+        'home/index.html',
     )
  
 def register_success(request):
