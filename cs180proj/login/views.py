@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import UpdateInformation
+from datetime import *
 # Create your views here.
 
 #views.py
@@ -83,10 +84,17 @@ def edit_profile(request):
     if request.method == "POST":
         form = UpdateInformation(request.POST)
         if form.is_valid():
+           user = form.save(commit=False)
            user = request.user
-           user.first_name = request.POST['first_name']
-           user.last_name = request.POST['last_name']
-           user.save()
+           if request.POST['first_name']:
+               user.first_name = request.POST['first_name']
+           if request.POST['last_name']:
+               user.last_name = request.POST['last_name']
+           if request.POST['user_sex']:
+               user.user_sex = request.POST['user_sex']
+           if request.POST['profile_picture_url']:
+               user.profile_picture_url = request.POST['profile_picture_url']
+           user = user.save()
            return HttpResponseRedirect('/accounts/profile/')
     else:
         form = UpdateInformation()
@@ -95,3 +103,17 @@ def edit_profile(request):
     })
     return render_to_response('login/edit_profile.html',variables,)
 
+#def edit_profile(request):
+#    if request.method == "POST":
+#        form = UpdateFirstName(request.POST)
+#        if form.is_valid():
+#           user = request.user
+#           user.first_name = request.POST['first_name']
+#           user.save()
+#           return HttpResponseRedirect('/accounts/profile/')
+#    else:
+#        form = UpdateInformation()
+#	variables = RequestContext(request, {
+#    'form': form, 'user': request.user
+#    })
+#    return render_to_response('login/edit_profile.html',variables,)

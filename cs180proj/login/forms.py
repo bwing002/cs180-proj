@@ -30,4 +30,34 @@ class UpdateInformation(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('first_name','last_name')
+        fields = ('first_name','last_name', 'user_sex', 'birth_date','profile_picture_url',)
+
+
+#class UpdateFirstName(forms.ModelForm):
+#
+#
+#    class Meta:
+#        model = UserProfile
+#        fields = ('first_name',)
+#
+#
+#class UpdateLastName(forms.ModelForm):
+#
+#    class Meta:
+#        model = UserProfile
+#        fields = ('last_name',)
+#
+#class UpdateBirthDate(forms.ModelForm):
+#
+#    class Meta:
+#        model = UserProfile
+#        fields = ('birth_date',)
+#
+#class UpdateProfileURL(forms.ModelForm):
+#
+#    class Meta:
+#        model = UserProfile
+#        fields = ('profile_picture_url',)
+
+
+
