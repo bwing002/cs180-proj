@@ -4,3 +4,7 @@ By mid-quarter should be 2 - 3 pages (more with diagrams)
     -Discuss technologies used
     -Discuss modules implemented
     -Technical documentation, not focused on the user
+=======
+The documentation for our project.
+
+Seeing if I can edit. (David)
