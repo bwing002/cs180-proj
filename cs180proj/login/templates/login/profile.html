@@ -3,10 +3,25 @@
     <head>
         <title>CS180 proj</title>
 	<link rel="stylesheet" href="{% static 'css/login.css' %}">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<style>
+		    .panel-body {
+		      		padding: @panel-body-padding;
+				border: 1px solid;
+		        	&:extend(.clearfix all);
+			}
+			body { background: #4099FF !important; }
+
+	</style>
+
     </head>
     <body>
         {% if user.is_authenticated %}
-    	<h2>Welcome, {{user.username}}.</h2>
+	<h2>Welcome, {{user.username}}</h2>
+	<div class="row">
+	<div class ="col-sm-3">
 	<table border="3" bgcolor="white" bordercolor="#000000">
 		<tr>
 			<form action="/logout">
@@ -15,13 +30,17 @@
         		<form action="/accounts/profile/edit">
         		    <input type="submit" value="Edit Profile">
         		</form>
+			<form action="/blog">
+        		    <input type="submit" value="Blog">
+        		</form>
+
 		</tr>
 		<tr>
-			<td><h2>PROFILE PICTURE!</h2>
+			<td bgcolor="white"><h2>PROFILE PICTURE!</h2>
 			<img src ="http://i.imgur.com/oS5abnv.png" style="width:304px;height:228px;"></td>
         	</tr>
 		<tr>
-			<td><h2>Profile Details</h2>
+			<td bgcolor="white"><h2>Profile Details</h2>
         		<p>Name:{{ user.first_name }} {{ user.last_name }}</p>
                         <p>Join Date: {{ user.date_joined|date:"M d, Y"  }}</p>
         		<p>Sex : {{ userprofile.user_sex }}</p>
@@ -30,6 +49,16 @@
                         <p>URL: {{ user.profile_picture_url.url }}</p></td>
         	</tr>
 	</table>
+	</div>
+	<div class ="col-sm-6">
+
+			<h2>insert tweet feed here</h2>
+	</div>
+	<div class ="col-sm-3">
+
+			<h2>uh legal shit lol?</h2>
+	</div>
+
         {% else %}
         <meta http-equiv="refresh" content="0; URL=/login">
         {% endif %}
