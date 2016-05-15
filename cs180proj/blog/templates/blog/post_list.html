@@ -9,7 +9,7 @@
 					<div class="panel-body">
         	    				<div>
 
-        	        				<p><b>{{user.first_name}}</b> {{user.last_name}} <font color="gray">{{user.username}}</font> {{ post.published_date|date:"h:i a M d, Y"}}</p>
+        	        				<p><b>{{user.first_name}}</b> {{user.last_name}} <font color="gray">{{user.username}}</font> <a href="{% url 'post_detail' pk=post.pk %}">{{ post.published_date|date:"h:i a M d, Y"}}</a></p>
 							<p>{{ post.text|linebreaks }}</p>
 						</div>
         	    			</div>
