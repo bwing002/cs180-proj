@@ -17,12 +17,14 @@ from django.conf.urls import include,url
 from django.contrib import admin
 from login.views import *
 from django.contrib.auth import views as django_views
+from blog.views import *
 #from cs180proj.index import views
 
 urlpatterns = [
     url(r'^$', index), #Homepage
     url(r'^admin/', admin.site.urls), #Default
+    url(r'', include('blog.urls')),
     url(r'', include('login.urls')),
     url(r'^accounts/profile/$', profile), #Put these in profile
-	url(r'^accounts/profile/edit$', edit_profile),
+    url(r'^accounts/profile/edit$', edit_profile),
 ]

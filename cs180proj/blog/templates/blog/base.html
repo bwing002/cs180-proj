@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+	<meta name="viewport" conte>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    	<style>
+		hr {
+    			border: none;
+        		height: 1px;
+			    /* Set the hr color */
+	        	color: #333; /* old IE */
+		    	background-color: #333; /* Modern Browsers */
+		    }
+		    .panel-body {
+		      		padding: @panel-body-padding;
+				border: 1px solid;
+		        	&:extend(.clearfix all);
+			}
+	</style>
+    </head>
+    <body>
+    	<div class="page-header">
+	</div>
+	<div class="content container">
+		<div class="row">
+			<div class="col-md-8">
+			{% block content %}
+			{% endblock %}
+			</div>
+		</div>
+	</div>
+    </body>
+</html>

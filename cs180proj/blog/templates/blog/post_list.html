@@ -1,19 +1,20 @@
-<html>
-    <head>
-        <title>CS180 proj</title>
-    </head>
-    <body>
-    	<p>Welcome, {{user.username}}.</p>
-        <h3>Welcome to our CS180 project!</h3>
-        <p>Group Members:</p>
-        <p>Brett Wing</p>
-        <p>Alex Mah</p>
-        <p>David Fukada</p>
-        <p>Antonio Tosti</p>
-        <h3>LINKS FOR DAYS!</h3>
-        <a href="{% url 'admin:index' %}">ADMIN!</a>
-        <br></br>
-        <a href="127.0.0.1:8000/admin/">BLOG!</a>
-        <a href="{% url 'login_user' %}">LOGIN!</a>
-    </body>
-</html>
+{% extends 'blog/base.html' %}
+{% block content %}	
+	<div class = "container">
+		<div class ="panel-group">
+			<div class = "panel panel-primary">
+				<div class="panel-heading"> le feed
+				</div>
+        			{% for post in posts %}
+					<div class="panel-body">
+        	    				<div>
+
+        	        				<p><b>{{user.first_name}}</b> {{user.last_name}} <font color="gray">{{user.username}}</font> {{ post.published_date|date:"h:i a M d, Y"}}</p>
+							<p>{{ post.text|linebreaks }}</p>
+						</div>
+        	    			</div>
+        			{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
