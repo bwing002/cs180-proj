@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import UpdateInformation
 from datetime import *
+
 # Create your views here.
 
 #views.py
@@ -38,8 +39,7 @@ def register(request):
 
 def index(request):
     return render_to_response(
-        'home/index.html',
-    )
+        'home/index.html',context_instance=RequestContext(request))
  
 def register_success(request):
     return render_to_response(
@@ -56,7 +56,6 @@ def home(request):
     'home.html',
     { 'user': request.user }
     )
-
 def login_user(request):
     logout(request)
     username = password = ''

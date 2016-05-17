@@ -14,3 +14,5 @@ class UserProfile(models.Model):
     birth_date = models.DateTimeField(blank=True,null=True)
     join_date = models.DateTimeField(auto_now_add=True, blank=True)
     profile_picture_url = models.CharField(max_length=200,blank=True,null=True)
+    follows = models.ManyToManyField('UserProfile', related_name ='followed_by')
+
