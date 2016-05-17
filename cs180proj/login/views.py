@@ -68,6 +68,7 @@ def login_user(request):
 			login(request, user)
 			return HttpResponseRedirect('/')#request.REQUEST.get('next',''))
     return render(request,'login/login.html', context_instance=RequestContext(request))
+
 @login_required(login_url='/login/')
 
 def post_list(request):
