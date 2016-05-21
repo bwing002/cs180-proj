@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import UpdateInformation
+from login.models import UserProfile
 from datetime import *
 
 # Create your views here.
@@ -83,25 +84,52 @@ def profile(request):
 def edit_profile(request):
     if request.method == "POST":
         form = UpdateInformation(request.POST)
+        userprofile = UserProfile.objects.get(user=request.user)
         if form.is_valid():
-           user = form.save(commit=False)
-           user = request.user
-           if request.POST['first_name']:
-               user.first_name = request.POST['first_name']
-           if request.POST['last_name']:
-               user.last_name = request.POST['last_name']
-           if request.POST['user_sex']:
-               user.user_sex = request.POST['user_sex']
-           if request.POST['profile_picture_url']:
-               user.profile_picture_url = request.POST['profile_picture_url']
-           user = user.save()
-           return HttpResponseRedirect('/accounts/profile/')
+            user = form.save(commit=False)
+            user = request.user
+            if request.POST['first_name']:
+                user.first_name = request.POST['first_name']
+            if request.POST['last_name']:
+                user.last_name = request.POST['last_name']
+            user_sex = form.cleaned_data['user_sex']
+            userprofile.user_sex = user_sex
+            userprofile.save()
+            user.save()
+            return HttpResponseRedirect('/accounts/profile/')
     else:
+    	userprofile = UserProfile.objects.get(user=request.user)
         form = UpdateInformation()
+
 	variables = RequestContext(request, {
-    'form': form, 'user': request.user
+    'form': form,'userprofile': userprofile,
     })
-    return render_to_response('login/edit_profile.html',variables,)
+    return render_to_response('login/edit_profile.html',{'userprofile':userprofile,'form':form},RequestContext(request))            
+        
+        
+        
+        
+        
+        
+        
+        
+#           user = form.save(commit=False)
+#           user = request.user
+#           if request.POST['first_name']:
+#               user.first_name = request.POST['first_name']
+#           if request.POST['last_name']:
+#               user.last_name = request.POST['last_name']
+#           if request.POST['user_sex']:
+#               user.user_sex = request.POST['user_sex']
+#           if request.POST['birth_date']:
+#               user.birth_date = request.POST['birth_date']
+#          #if request.FILES['profile_picture_url']:
+#           #    user.profile_picture_url = request.FILES['profile_picture_url']
+#           user.save()
+#    else:
+#        form = UpdateInformation()
+#	
+#    return render_to_response(request, 'login/edit_profile.html', {'form': form,RequestContext(request))
 
 #def edit_profile(request):
 #    if request.method == "POST":
@@ -114,6 +142,6 @@ def edit_profile(request):
 #    else:
 #        form = UpdateInformation()
 #	variables = RequestContext(request, {
-#    'form': form, 'user': request.user
+#    'form': form, 'user': request.user, 'userProfile' : userProfile
 #    })
-#    return render_to_response('login/edit_profile.html',variables,)
+#    return render_to_response('login/edit_profile.html',variables,RequestContext(request))

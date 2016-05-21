@@ -3,7 +3,7 @@ import re
 from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from .models import UserProfile
+from login.models import UserProfile
   
 class RegistrationForm(forms.Form):
  
@@ -30,7 +30,7 @@ class UpdateInformation(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('first_name','last_name', 'user_sex', 'birth_date','profile_picture_url',)
+        fields = ('first_name', 'last_name','user_sex', 'birth_date',)
 
 
 #class UpdateFirstName(forms.ModelForm):

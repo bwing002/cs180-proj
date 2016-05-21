@@ -43,8 +43,8 @@
 			<td bgcolor="white"><h2>Profile Details</h2>
         		<p>Name:{{ user.first_name }} {{ user.last_name }}</p>
                         <p>Join Date: {{ user.date_joined|date:"M d, Y"  }}</p>
-        		<p>Sex : {{ userprofile.user_sex }}</p>
-		        <p>Date of Birth: {{ user.birth_date }}</p>
+        		<p>Sex : {{ request.user.userprofile.user_sex }}</p>
+		        <p>Date of Birth: {{ request.user.UserProfile.birth_date }}</p>
         		<p>Email: {{user.email}}</p>
                         <p>URL: {{ user.profile_picture_url.url }}</p></td>
         	</tr>
