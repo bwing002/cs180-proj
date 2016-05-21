@@ -92,8 +92,9 @@ def edit_profile(request):
                 user.first_name = request.POST['first_name']
             if request.POST['last_name']:
                 user.last_name = request.POST['last_name']
-            user_sex = form.cleaned_data['user_sex']
-            userprofile.user_sex = user_sex
+            if request.POST['user_sex']:
+                user_sex = form.cleaned_data['user_sex']
+                userprofile.user_sex = user_sex
             userprofile.save()
             user.save()
             return HttpResponseRedirect('/accounts/profile/')
