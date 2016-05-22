@@ -95,6 +95,8 @@ def edit_profile(request):
             if request.POST['user_sex']:
                 user_sex = form.cleaned_data['user_sex']
                 userprofile.user_sex = user_sex
+            if request.POST['profile_picture_url']:
+                userprofile.profile_picture_url = form.cleaned_data['profile_picture_url']
             userprofile.save()
             user.save()
             return HttpResponseRedirect('/accounts/profile/')

@@ -14,7 +14,8 @@ class UserProfile(models.Model):
     user_sex = models.CharField(max_length=30,blank=True,null=True)
     birth_date = models.DateTimeField(blank=True,null=True)
     join_date = models.DateTimeField(auto_now_add=True, blank=True)
-    #profile_picture_url = models.ImageField(upload_to='profile_images', blank=True,null=True)
+    #profile_picture = models.ImageField(upload_to='profile_images', blank=True,null=True)
+    profile_picture_url = models.URLField(max_length=200,blank=True,null=True, default="http://i.imgur.com/oS5abnv.png")
     follows = models.ManyToManyField('UserProfile', related_name ='followed_by')
     
     def __unicode__(self):
