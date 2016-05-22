@@ -7,8 +7,15 @@
                 {{ post.published_date }}
             </div>
         {% endif %}
-        {% if user.is_authenticated %}
-			<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <!-- Checks that user is the author or admin before allowing edit/deletion -->
+        {% if user.is_authenticated and post.auth == user or user.is_superuser%}
+                <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <!-- Add actual post deletion -->
+                <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
 		{% endif %}
 		<h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaks }}</p>
