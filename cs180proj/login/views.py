@@ -108,11 +108,12 @@ def edit_profile(request):
     return render_to_response('login/edit_profile.html',{'userprofile':userprofile,'form':form},RequestContext(request))            
         
 def view_profile(request, viewusername):
-    userprofile = UserProfile.objects.get(user=User.objects.get(username=viewusername))
-#    userprofile = UserProfile.objects.get(user=User.objects.get(username=viewusername))
-    user = User.objects.get(username=viewusername)
-#    return render(request, 'login/view_profile.html', {'user':userprofile})
-    return render(request, 'login/view_profile.html', {'userprofile':userprofile,'user':user})       
+    if User.objects.filter(username=viewusername).exists():
+        userprofile = UserProfile.objects.get(user=User.objects.get(username=viewusername))
+        user = User.objects.get(username=viewusername)
+        return render(request, 'login/view_profile.html', {'userprofile':userprofile,'user':user})
+#CREATE A WEBPAGE FOR A PROFILE DOES NOT EXIST 
+    return render(request, 'login/view_profile.html', {})
         
         
         
