@@ -61,10 +61,9 @@
 			<h2>{{user.username}}'s feed</h2>
 	</div>
 	<div class ="col-sm-3">
-
-			<h2>Following</h2>
+			<h2>Following <font color="blue">{{user.userprofile.follows.count}}</font></h2>
 			{{user.userprofile.follows.all}}
-			<h2>Followers</h2>
+			<h2>Followers <font color="blue">{{user.userprofile.followed_by.count}}</font></h2>
 			{{user.userprofile.followed_by.all}}
 
 	</div>
