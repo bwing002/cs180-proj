@@ -32,6 +32,11 @@
 			<form action="follow">
         		    <input type="submit" value="Follow">
         		</form>
+			<form action="unfollow">
+        		    <input type="submit" value="Unfollow">
+        		</form>
+
+
 
 		</tr>
 		<tr>
@@ -41,6 +46,8 @@
 		<tr>
 			<td bgcolor="white"><h2>Profile Details</h2>
         		<p>Name:{{ user.first_name }} {{ user.last_name }}</p>
+        		<p>Nickname : {{ userprofile.nickname }}</p>
+        		<p>Biography : {{ userprofile.nickname }}</p>
                         <p>Join Date: {{ user.date_joined|date:"M d, Y"  }}</p>
         		<p>Sex : {{ userprofile.user_sex }}</p>
 		        <p>Date of Birth: {{ user.birth_date }}</p>

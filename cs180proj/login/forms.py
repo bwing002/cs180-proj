@@ -11,8 +11,8 @@ class RegistrationForm(forms.Form):
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Email address"))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password"))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password (again)"))
-    first_name = forms.CharField(widget=forms.TextInput(attrs=dict(required=True,max_length=30)), label=_("First Name"))
- 
+    first_name = forms.CharField(widget=forms.TextInput(attrs=dict(required=True,max_length=30)), label=_("First Name")) 
+    last_name = forms.CharField(widget=forms.TextInput(attrs=dict(required=True,max_length=30)), label=_("Last Name")) 
     def clean_username(self):
         try:
             user = User.objects.get(username__iexact=self.cleaned_data['username'])
@@ -30,7 +30,7 @@ class UpdateInformation(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('first_name', 'last_name','user_sex', 'birth_date','profile_picture_url', 'follows', )
+        fields = ('first_name', 'last_name','nickname','biography', 'user_sex', 'birth_date','profile_picture_url', )
 
 
 #class UpdateFirstName(forms.ModelForm):

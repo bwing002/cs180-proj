@@ -25,6 +25,7 @@ def register(request):
             password=form.cleaned_data['password1'],
             email=form.cleaned_data['email'],
             first_name=form.cleaned_data['first_name'],
+            last_name=form.cleaned_data['last_name'],
             )
             return HttpResponseRedirect('/register/success/')
     else:
@@ -95,6 +96,12 @@ def edit_profile(request):
             if request.POST['user_sex']:
                 user_sex = form.cleaned_data['user_sex']
                 userprofile.user_sex = user_sex
+            if request.POST['nickname']:
+                nickname = form.cleaned_data['nickname']
+                userprofile.nickname = nickname
+            if request.POST['biography']:
+                biography = form.cleaned_data['biography']
+                userprofile.biography = biography
             if request.POST['profile_picture_url']:
                 userprofile.profile_picture_url = form.cleaned_data['profile_picture_url']
             userprofile.save()
@@ -124,36 +131,10 @@ def follow_user(request, viewusername):
 	userprofile.follows.add(user.userprofile)
 	return render(request, 'login/view_profile.html', {'userprofile':userprofile,'user':user})
         
+def unfollow_user(request, viewusername):
+	temp = UserProfile.objects.get(user=User.objects.get(username=viewusername))
+	user = User.objects.get(username=viewusername)
+	userprofile = UserProfile.objects.get(user=request.user)
+	userprofile.follows.remove(user.userprofile)
+	return render(request, 'login/view_profile.html', {'userprofile':userprofile,'user':user})
         
-#           user = form.save(commit=False)
-#           user = request.user
-#           if request.POST['first_name']:
-#               user.first_name = request.POST['first_name']
-#           if request.POST['last_name']:
-#               user.last_name = request.POST['last_name']
-#           if request.POST['user_sex']:
-#               user.user_sex = request.POST['user_sex']
-#           if request.POST['birth_date']:
-#               user.birth_date = request.POST['birth_date']
-#          #if request.FILES['profile_picture_url']:
-#           #    user.profile_picture_url = request.FILES['profile_picture_url']
-#           user.save()
-#    else:
-#        form = UpdateInformation()
-#	
-#    return render_to_response(request, 'login/edit_profile.html', {'form': form,RequestContext(request))
-
-#def edit_profile(request):
-#    if request.method == "POST":
-#        form = UpdateFirstName(request.POST)
-#        if form.is_valid():
-#           user = request.user
-#           user.first_name = request.POST['first_name']
-#           user.save()
-#           return HttpResponseRedirect('/accounts/profile/')
-#    else:
-#        form = UpdateInformation()
-#	variables = RequestContext(request, {
-#    'form': form, 'user': request.user, 'userProfile' : userProfile
-#    })
-#    return render_to_response('login/edit_profile.html',variables,RequestContext(request))

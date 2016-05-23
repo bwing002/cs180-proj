@@ -42,6 +42,8 @@
 		<tr>
 			<td bgcolor="white"><h2>Profile Details</h2>
         		<p>Name:{{ user.first_name }} {{ user.last_name }}</p>
+                        <p>Nickname: {{ request.user.userprofile.nickname }}</p>
+                        <p>Biography: {{ request.user.userprofile.biography }}</p>
                         <p>Join Date: {{ user.date_joined|date:"M d, Y"  }}</p>
         		<p>Sex : {{ request.user.userprofile.user_sex }}</p>
 		        <p>Date of Birth: {{ request.user.UserProfile.birth_date }}</p>
