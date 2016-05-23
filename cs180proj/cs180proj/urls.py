@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^accounts/profile/$', profile), #Put these in profile
     url(r'^accounts/profile/edit$', edit_profile),
     url(r'^accounts/profile/(?P<viewusername>[\w.@+-]+)/$', view_profile),
+    url(r'^accounts/profile/(?P<viewusername>[\w.@+-]+)/follow$', follow_user)
 ]

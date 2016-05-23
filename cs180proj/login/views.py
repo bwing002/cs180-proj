@@ -117,7 +117,12 @@ def view_profile(request, viewusername):
 #CREATE A WEBPAGE FOR A PROFILE DOES NOT EXIST 
     return render(request, 'login/view_profile.html', {})
         
-        
+def follow_user(request, viewusername):
+	temp = UserProfile.objects.get(user=User.objects.get(username=viewusername))
+	user = User.objects.get(username=viewusername)
+	userprofile = UserProfile.objects.get(user=request.user)
+	userprofile.follows.add(user.userprofile)
+	return render(request, 'login/view_profile.html', {'userprofile':userprofile,'user':user})
         
         
 #           user = form.save(commit=False)

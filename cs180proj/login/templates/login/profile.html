@@ -56,7 +56,10 @@
 	</div>
 	<div class ="col-sm-3">
 
-			<h2>uh legal shit lol?</h2>
+			<h2>Following</h2>
+			{{user.userprofile.follows.all}}
+			<h2>Followers</h2>
+			{{user.userprofile.followed_by.all}}
 	</div>
 
         {% else %}
