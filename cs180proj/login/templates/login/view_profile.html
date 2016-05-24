@@ -57,9 +57,9 @@
 
 			<h2>{{user.username}}'s feed</h2>
 				{% for post in posts %}
-			{% if user.userprofile.follows.all %}
-				{% for follows in user.userprofile.follows.all %}
-				{% if follows == post.author.userprofile or user.username == post.author.username %}
+			{% if post.retweeted.all %}
+				{% for retweetedby in post.retweeted.all %}
+				{% if user.userprofile == retweetedby or user.username == post.author.username %}
 				<div class="panel-body">
         	    		<div>
         	        		<p>

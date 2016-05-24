@@ -1,6 +1,9 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
+from login.models import UserProfile
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Post(models.Model):
@@ -8,6 +11,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     text = models.TextField()
     embedURL = models.URLField(max_length=200, null=True,blank=True)
+    retweeted = models.ManyToManyField(UserProfile, related_name ='retweeted_by')
     created_date = models.DateTimeField(
           blank=True,null=True)
     published_date = models.DateTimeField(

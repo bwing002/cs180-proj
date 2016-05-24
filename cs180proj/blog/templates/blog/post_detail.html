@@ -6,6 +6,9 @@
             <div class="date">
                 {{ post.published_date }}
             </div>
+	<form action="retweet">
+       	    <input type="submit" value="retweet">
+       	</form>
         {% endif %}
         <!-- Checks that user is the author or admin before allowing edit/deletion -->
         {% if user.is_authenticated and post.auth == user or user.is_superuser%}
