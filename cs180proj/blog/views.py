@@ -15,6 +15,12 @@ def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
+
+def tag_list(request, tagin):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    return render(request, 'blog/tagged_posts.html', {'posts': posts, 'tagin':tagin})
+
+
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})
@@ -28,6 +34,8 @@ def post_new(request):
             post.published_date = timezone.now()
             if request.POST['embedURL']:
                 post.embedURL = form.cleaned_data['embedURL']
+            if request.POST['tags']:
+                post.tags = form.cleaned_data['tags']
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -71,8 +79,8 @@ def add_comment_to_post(request, pk):
 
 
 def retweet(request, pk):
-	post = get_object_or_404(Post, pk=pk)
-        userprofile = UserProfile.objects.get(user=request.user)
-	post.retweeted.add(userprofile)
-	return redirect('/post/'+pk)
+    post = get_object_or_404(Post, pk=pk)
+    userprofile = UserProfile.objects.get(user=request.user)
+    post.retweeted.add(userprofile)
+    return redirect('/post/'+pk)
 
