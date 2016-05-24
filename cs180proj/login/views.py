@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import UpdateInformation
 from login.models import UserProfile
 from datetime import *
+from blog.models import Post
+from blog.forms import PostForm, CommentForm
 
 # Create your views here.
 
@@ -77,7 +79,9 @@ def post_list(request):
     return render(request, 'login/post_list.html', {})
 
 def profile(request):
-  return render(request, 'login/profile.html', {})
+  user=request.user
+  posts = Post.objects.filter(author=user)
+  return render(request, 'login/profile.html', {'user':user,'posts':posts})
 
 #def edit_profile(request):
 #  return render(request, 'login/edit_profile.html', {})
@@ -120,7 +124,8 @@ def view_profile(request, viewusername):
     if User.objects.filter(username=viewusername).exists():
         userprofile = UserProfile.objects.get(user=User.objects.get(username=viewusername))
         user = User.objects.get(username=viewusername)
-        return render(request, 'login/view_profile.html', {'userprofile':userprofile,'user':user})
+        posts = Post.objects.filter(author=user)
+        return render(request, 'login/view_profile.html', {'userprofile':userprofile,'user':user, 'posts':posts})
 #CREATE A WEBPAGE FOR A PROFILE DOES NOT EXIST 
     return render(request, 'login/view_profile.html', {})
         
