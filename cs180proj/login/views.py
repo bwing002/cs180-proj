@@ -129,12 +129,24 @@ def follow_user(request, viewusername):
 	user = User.objects.get(username=viewusername)
 	userprofile = UserProfile.objects.get(user=request.user)
 	userprofile.follows.add(user.userprofile)
-	return render(request, 'login/view_profile.html', {'userprofile':userprofile,'user':user})
+#	return render(process_request, 'login/view_profile.html', {'userprofile':userprofile,'user':user})
+	return redirect('/accounts/profile/'+viewusername)
         
 def unfollow_user(request, viewusername):
 	temp = UserProfile.objects.get(user=User.objects.get(username=viewusername))
 	user = User.objects.get(username=viewusername)
 	userprofile = UserProfile.objects.get(user=request.user)
 	userprofile.follows.remove(user.userprofile)
-	return render(request, 'login/view_profile.html', {'userprofile':userprofile,'user':user})
-        
+#	return render(request, 'login/view_profile.html', {'userprofile':userprofile,'user':user})
+	return redirect('/accounts/profile/'+viewusername)
+       
+
+
+
+
+
+
+
+
+
+ 
