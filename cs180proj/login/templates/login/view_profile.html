@@ -56,13 +56,16 @@
 	<div class ="col-sm-6">
 
 			<h2>{{user.username}}'s feed</h2>
+
 				{% for post in posts %}
+				{% for follows in user.userprofile.follows.all %}
+				{% if follows == post.author.userprofile or user.username == post.author.username %}
 				<div class="panel-body">
         	    		<div>
         	        		<p>
                                 <b>{{post.author.first_name}}</b>
                                 {{post.author.last_name}}
-                                <font color="gray">{{post.author.username}}</font>
+                                <a href="/../accounts/profile/{{post.author.username}}"><font color="gray">{{post.author.username}}</font></a>
                                 <a href="{% url 'post_detail' pk=post.pk %}">
                                 {{ post.published_date|date:"h:i a M d, Y"}}</a>
                             </p>
@@ -75,8 +78,9 @@
 						</div>
         	    </div>
                 <a href="{% url 'blog.views.post_detail' pk=post.pk %}">Comments: {{post.comments.count}}</a>
+				{% endif %}
         		{% endfor %}
-
+			{% endfor %}
 
 	</div>
 	<div class ="col-sm-3">
@@ -88,9 +92,12 @@
 			{% endfor %}
 			<h2>Followers <font color="blue">{{user.userprofile.followed_by.count}}</font></h2>
 			{% for follower in user.userprofile.followed_by.all %}
+			{% if follower == user.username %}
+			{% else %}
 				<p>
 					<b><a href="/../accounts/profile/{{follower}}" color="black"><b><font color="black">{{follower}}</font></b></a></b>
 				</p>
+			{% endif %}
 			{% endfor %}
 
 	</div>

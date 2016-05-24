@@ -10,7 +10,7 @@
         	        		<p>
                                 <b>{{post.author.first_name}}</b>
                                 {{post.author.last_name}}
-                                <font color="gray">{{post.author.username}}</font>
+                                <a href="/../accounts/profile/{{post.author.username}}"><font color="gray">{{post.author.username}}</font></a>
                                 <a href="{% url 'post_detail' pk=post.pk %}">
                                 {{ post.published_date|date:"h:i a M d, Y"}}</a>
                             </p>

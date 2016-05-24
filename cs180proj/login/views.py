@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.utils import timezone
+import datetime
 from .forms import UpdateInformation
 from login.models import UserProfile
 from datetime import *
@@ -80,11 +82,10 @@ def post_list(request):
 
 def profile(request):
   user=request.user
-  posts = Post.objects.filter(author=user)
+#  posts = Post.objects.filter(author=user)
+  posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
   return render(request, 'login/profile.html', {'user':user,'posts':posts})
 
-#def edit_profile(request):
-#  return render(request, 'login/edit_profile.html', {})
 
 def edit_profile(request):
     if request.method == "POST":
@@ -124,7 +125,8 @@ def view_profile(request, viewusername):
     if User.objects.filter(username=viewusername).exists():
         userprofile = UserProfile.objects.get(user=User.objects.get(username=viewusername))
         user = User.objects.get(username=viewusername)
-        posts = Post.objects.filter(author=user)
+#        posts = Post.objects.filter(author=user)
+        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
         return render(request, 'login/view_profile.html', {'userprofile':userprofile,'user':user, 'posts':posts})
 #CREATE A WEBPAGE FOR A PROFILE DOES NOT EXIST 
     return render(request, 'login/view_profile.html', {})

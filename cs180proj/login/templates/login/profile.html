@@ -56,12 +56,14 @@
 
 			<h2>insert tweet feed here</h2>
 				{% for post in posts %}
+				{% for follows in user.userprofile.follows.all %}
+				{% if follows == post.author.userprofile or user.username == post.author.username %}
 				<div class="panel-body">
         	    		<div>
         	        		<p>
                                 <b>{{post.author.first_name}}</b>
                                 {{post.author.last_name}}
-                                <font color="gray">{{post.author.username}}</font>
+                                <a href="/../accounts/profile/{{post.author.username}}"><font color="gray">{{post.author.username}}</font></a>
                                 <a href="{% url 'post_detail' pk=post.pk %}">
                                 {{ post.published_date|date:"h:i a M d, Y"}}</a>
                             </p>
@@ -74,7 +76,9 @@
 						</div>
         	    </div>
                 <a href="{% url 'blog.views.post_detail' pk=post.pk %}">Comments: {{post.comments.count}}</a>
+				{% endif %}
         		{% endfor %}
+			{% endfor %}
 
 	</div>
 	<div class ="col-sm-3">
