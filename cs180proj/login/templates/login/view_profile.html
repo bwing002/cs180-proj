@@ -81,9 +81,17 @@
 	</div>
 	<div class ="col-sm-3">
 			<h2>Following <font color="blue">{{user.userprofile.follows.count}}</font></h2>
-			{{user.userprofile.follows.all}}
+			{% for follows in user.userprofile.follows.all %}
+				<p>
+					<b><a href="/../accounts/profile/{{follows}}" color="black"><b><font color="black">{{follows}}</font></b></a></b>
+				</p>
+			{% endfor %}
 			<h2>Followers <font color="blue">{{user.userprofile.followed_by.count}}</font></h2>
-			{{user.userprofile.followed_by.all}}
+			{% for follower in user.userprofile.followed_by.all %}
+				<p>
+					<b><a href="/../accounts/profile/{{follower}}" color="black"><b><font color="black">{{follower}}</font></b></a></b>
+				</p>
+			{% endfor %}
 
 	</div>
 
