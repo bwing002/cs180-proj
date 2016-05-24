@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+{% block content %}	
+	<div class = "container">
+		<div class ="panel-group">
+			<div class = "panel panel-primary">
+				<div class="panel-heading"> Newsfeed</div>
+        		{% for post in posts %}
+				{% if post.tags == tagin %}
+				<div class="panel-body">
+        	    		<div>
+        	        		<p>
+                                <b>{{post.author.first_name}}</b>
+                                {{post.author.last_name}}
+                                <a href="/../accounts/profile/{{post.author.username}}"><font color="gray">{{post.author.username}}</font></a>
+                                <a href="{% url 'post_detail' pk=post.pk %}">
+                                {{ post.published_date|date:"h:i a M d, Y"}}</a>
+                            </p>
+			<p>
+				{% if post.embedURL %}
+				<img src={{post.embedURL}} alt="not valid brahhh"  width:100%  height:100% max-width="600" max-height="600">
+				{% endif %}	
+			</p>
+							<p>
+                                {{ post.text|linebreaks|safe }}
+                            </p
+                            <p> <!--Show the posts's number, add a button to redirect to the page -->
+                                <a href="../post/{{post.pk}}">Post #{{post.pk}}</a>
+                            </p>
+						</div>
+        	    </div>
+                <a href="{% url 'blog.views.post_detail' pk=post.pk %}">Comments: {{post.comments.count}}</a>
+				{% endif %}
+        		{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

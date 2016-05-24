@@ -12,6 +12,7 @@ class Post(models.Model):
     text = models.TextField()
     embedURL = models.URLField(max_length=200, null=True,blank=True)
     retweeted = models.ManyToManyField(UserProfile, related_name ='retweeted_by')
+    tags = models.CharField(max_length=50,null=True,blank=True)
     created_date = models.DateTimeField(
           blank=True,null=True)
     published_date = models.DateTimeField(
@@ -38,3 +39,4 @@ class Comment(models.Model):
     
     def __str__(self):
         return self.text
+

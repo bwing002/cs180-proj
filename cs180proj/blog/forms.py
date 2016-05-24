@@ -8,7 +8,7 @@ from .models import Post, Comment
 class PostForm(forms.ModelForm):
 		class Meta:
 			model = Post
-			fields = ('title', 'text', 'embedURL')
+			fields = ('title', 'text', 'embedURL','tags')
 
 class CommentForm(forms.ModelForm):
     class Meta:
