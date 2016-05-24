@@ -23,12 +23,17 @@
 	<div class ="col-sm-3">
 	<table border="3" bgcolor="white" bordercolor="#000000">
 		<tr>
-			<form action="/logout">
-        		    <input type="submit" value="Log Out">
-        		</form>
 			<form action="/blog">
         		    <input type="submit" value="Blog">
         		</form>
+			<form action="follow">
+        		    <input type="submit" value="Follow">
+        		</form>
+			<form action="unfollow">
+        		    <input type="submit" value="Unfollow">
+        		</form>
+
+
 
 		</tr>
 		<tr>
@@ -38,6 +43,8 @@
 		<tr>
 			<td bgcolor="white"><h2>Profile Details</h2>
         		<p>Name:{{ user.first_name }} {{ user.last_name }}</p>
+        		<p>Nickname : {{ userprofile.nickname }}</p>
+        		<p>Biography : {{ userprofile.nickname }}</p>
                         <p>Join Date: {{ user.date_joined|date:"M d, Y"  }}</p>
         		<p>Sex : {{ userprofile.user_sex }}</p>
 		        <p>Date of Birth: {{ user.birth_date }}</p>
@@ -49,10 +56,35 @@
 	<div class ="col-sm-6">
 
 			<h2>{{user.username}}'s feed</h2>
+				{% for post in posts %}
+				<div class="panel-body">
+        	    		<div>
+        	        		<p>
+                                <b>{{post.author.first_name}}</b>
+                                {{post.author.last_name}}
+                                <font color="gray">{{post.author.username}}</font>
+                                <a href="{% url 'post_detail' pk=post.pk %}">
+                                {{ post.published_date|date:"h:i a M d, Y"}}</a>
+                            </p>
+							<p>
+                                {{ post.text|linebreaks }}
+                            </p>
+                            <p> <!--Show the posts's number, add a button to redirect to the page -->
+                                <a href="../post/{{post.pk}}">Post #{{post.pk}}</a>
+                            </p>
+						</div>
+        	    </div>
+                <a href="{% url 'blog.views.post_detail' pk=post.pk %}">Comments: {{post.comments.count}}</a>
+        		{% endfor %}
+
+
 	</div>
 	<div class ="col-sm-3">
+			<h2>Following <font color="blue">{{user.userprofile.follows.count}}</font></h2>
+			{{user.userprofile.follows.all}}
+			<h2>Followers <font color="blue">{{user.userprofile.followed_by.count}}</font></h2>
+			{{user.userprofile.followed_by.all}}
 
-			<h2>uh legal shit lol?</h2>
 	</div>
 
     </body>
