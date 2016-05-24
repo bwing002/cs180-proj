@@ -18,6 +18,11 @@
                 </a>
 		{% endif %}
 		<h1>{{ post.title }}</h1>
+	<p>
+	{% if post.embedURL %}
+	<img src={{post.embedURL}} alt="not valid brahhh"  width:100%  height:100% max-width="600" max-height="600">
+	{% endif %}	
+	</p>
         <p>{{ post.text|linebreaks }}</p>
     </div>
 
@@ -28,6 +33,11 @@
         <div class="comment">
             <div class="date">{{ comment.created_date }}</div>
             <strong>{{comment.author}}</strong>
+			<p>
+				{% if post.embedURL %}
+				<img src={{post.embedURL}} alt="not valid brahhh"  width:100%  height:100% max-width="600" max-height="600">
+				{% endif %}	
+			</p>
             <p>{{comment.text|linebreaks}}</p>
         </div>
     {% empty %}

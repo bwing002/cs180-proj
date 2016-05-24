@@ -3,6 +3,11 @@ from django.utils import timezone
 import datetime
 from .models import Post
 from .forms import PostForm, CommentForm
+from django.views.decorators.clickjacking import xframe_options_exempt
+
+@xframe_options_exempt
+def ok_to_load_in_a_frame(request):
+    return HttpResponse("www.youtube.com")
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
@@ -19,6 +24,8 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
+            if request.POST['embedURL']:
+                post.embedURL = form.cleaned_data['embedURL']
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -51,6 +58,8 @@ def add_comment_to_post(request, pk):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+            if request.POST['embedURL']:
+                post.embedURL = form.cleaned_data['embedURL']
             comment.save()
             return redirect('blog.views.post_detail', pk=post.pk)
     else:
