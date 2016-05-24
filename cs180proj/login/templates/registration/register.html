@@ -8,7 +8,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-
     <title>Register</title>
 
     <!-- Bootstrap core CSS -->
@@ -26,6 +25,13 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
+  {% if form.errors %}
+<div id="form-error" style="color:red;">
+	{% for field in form %}
+	<center>{{ field.errors }}</center>
+	{% endfor %}
+</div>
+{% endif %}
 
   <body>
 <form role="form"  method="post" action="." class="form-signin">
@@ -61,7 +67,7 @@
 <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 
         </form>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
