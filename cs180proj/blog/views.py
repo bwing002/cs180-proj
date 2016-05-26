@@ -15,6 +15,31 @@ def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
+def search_tags(request):
+    if request.method == "POST":
+        tagin = request.POST.get('tag',None)
+        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+        return render(request, 'blog/tagged_posts.html', {'posts': posts, 'tagin':tagin})
+    return redirect('/blog/')
+
+#   if request.method=="POST":
+#       if form.is_valid():
+#           if request.POST['tag']:
+#               tagin = form.cleaned_data['tag']
+#               tagin=tag
+#               posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+#               return render(request, 'blog/tagged_posts.html', {'posts': posts, 'tagin':tagin})
+#   return redirect('/blog/')
+                
+#    if request.method=="POST"
+#        form = TagSearchForm(request.POST)
+#        if form.is_valid():
+#            if request.POST['tagin']:
+#                tagin = form.cleaned_data['tagin']
+#                posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+#                return render(request, 'blog/tagged_posts.html', {'posts':posts, 'tagin':tagin})
+#    return redirect('post_list')
+
 
 def tag_list(request, tagin):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')

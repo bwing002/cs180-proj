@@ -32,4 +32,6 @@ urlpatterns = [
     url(r'^accounts/profile/(?P<viewusername>[\w.@+-]+)/unfollow/$', unfollow_user),
     url(r'^post/(?P<pk>[\w.@+-]+)/retweet/$', retweet),
     url(r'^blog/(?P<tagin>[\w.@+-]+)/$', tag_list),
+    url(r'^search_tags/$', search_tags),
+    url(r'^search_profiles/$', search_profiles),
 ]
