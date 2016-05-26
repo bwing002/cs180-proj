@@ -122,7 +122,14 @@ def edit_profile(request):
     'form': form,'userprofile': userprofile,
     })
     return render_to_response('login/edit_profile.html',{'userprofile':userprofile,'form':form},RequestContext(request))            
-        
+       
+def search_profiles(request):
+    if request.method == "POST":
+        profile = request.POST.get('profile',None)
+        return redirect('/accounts/profile/'+profile) 
+    return redirect('/accounts/profile/')
+
+ 
 def view_profile(request, viewusername):
     if User.objects.filter(username=viewusername).exists():
         userprofile = UserProfile.objects.get(user=User.objects.get(username=viewusername))
