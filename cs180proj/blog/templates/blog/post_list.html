@@ -92,7 +92,7 @@
                                 <a href="/../accounts/profile/{{post.author.username}}"><font color="gray">{{post.author.username}}</font></a>
                                 <a href="{% url 'post_detail' pk=post.pk %}">
                                 {{ post.published_date|date:"h:i a M d, Y"}}</a>
-				<a href ="/post/{{post.pk}}/retweet">
+				<a href="/post/{{post.pk}}/retweet">
 			       	    <input type="submit" class="btn btn-success btn-sm"  value="retweet" style="float:right;">
 			       	</a>
                             </p>
