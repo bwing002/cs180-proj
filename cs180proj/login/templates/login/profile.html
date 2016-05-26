@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Not Twitter</title>
+    <title>Twatter</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
@@ -97,9 +97,10 @@
         	</tr>
 	</table>
 	</div>
-    <div class="Middle"style="background:#C2DFFF;">
-			
-
+    <div class="Middle"background-color="transparent">
+					{% if user.is_authenticated %}
+		<form action="/post/new">
+		<input type="submit"  class="btn btn-success btn-sm" value="+ New Post">
 				{% for post in posts %}
 			{% if user.userprofile.follows.all %}
 				{% for follows in user.userprofile.follows.all %}
@@ -122,7 +123,11 @@
                                 {{ post.text|linebreaks }}
                             </p>
                             <p> <!--Show the posts's number, add a button to redirect to the page -->
-                                <a href="../post/{{post.pk}}">Post #{{post.pk}}</a>
+                                <a href="/post/{{post.pk}}">Post #{{post.pk}}</a>
+                            </p>
+                            <p>
+                                                       Tag: 	{{post.tags}}
+
                             </p>
 						</div>
         	    </div>
@@ -151,7 +156,10 @@
                                 {{ post.text|linebreaks }}
                             </p>
                             <p> <!--Show the posts's number, add a button to redirect to the page -->
-                                <a href="../post/{{post.pk}}">Post #{{post.pk}}</a>
+                                <a href="/post/{{post.pk}}">Post #{{post.tags}}</a>
+                            </p>
+                            <p>
+                            	Tag: {{post.tags}}
                             </p>
 						</div>
         	    </div>
@@ -164,16 +172,16 @@
 	<div class="Right"style="background:#ADDFFF;">
 
 
-				<h2>Following <font color="blue">{{user.userprofile.follows.count}}</font></h2>
+				<h2>Following: <font color="blue">{{user.userprofile.follows.count}}</font></h2>
 			{% for follows in user.userprofile.follows.all %}
 				<p>
-					<b><a href="/../accounts/profile/{{follows}}" color="black"><b><font color="black">{{follows}}</font></b></a></b>
+					<b><a href="/../accounts/profile/{{follows}}" ><b><font style="font-size:20px" color="grey">{{follows}}</font></b></a></b>
 				</p>
 			{% endfor %}
-			<h2>Followers <font color="blue">{{user.userprofile.followed_by.count}}</font></h2>
+			<h2>Followers: <font color="blue">{{user.userprofile.followed_by.count}}</font></h2>
 			{% for follower in user.userprofile.followed_by.all %}
 				<p>
-					<b><a href="/../accounts/profile/{{follower}}" color="black"><b><font color="black">{{follower}}</font></b></a></b>
+					<b><a href="/../accounts/profile/{{follower}}"><b><font style="font-size:20px"  color="grey">{{follower}}</font></b></a></b>
 				</p>
 			{% endfor %}	</div>
 
@@ -182,7 +190,7 @@
         {% endif %}
     </div>
         </div>
-
+	{% endif %}
 </html>
 
    <!-- Bootstrap core JavaScript

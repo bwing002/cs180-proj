@@ -126,7 +126,7 @@
                                 {{ post.text|linebreaks }}
                             </p>
                             <p> <!--Show the posts's number, add a button to redirect to the page -->
-                                <a href="../post/{{post.pk}}">Post #{{post.pk}}</a>
+                                <a href="/post/{{post.pk}}">Post #{{post.pk}}</a>
                             </p>
 						</div>
         	    </div>
@@ -155,7 +155,7 @@
                                 {{ post.text|linebreaks }}
                             </p>
                             <p> <!--Show the posts's number, add a button to redirect to the page -->
-                                <a href="../post/{{post.pk}}">Post #{{post.pk}}</a>
+                                <a href="/post/{{post.pk}}">Post #{{post.pk}}</a>
                             </p>
 						</div>
         	    </div>
@@ -168,7 +168,7 @@
 			<h2>Following <font color="blue">{{user.userprofile.follows.count}}</font></h2>
 			{% for follows in user.userprofile.follows.all %}
 				<p>
-					<b><a href="/../accounts/profile/{{follows}}" color="black"><b><font color="black">{{follows}}</font></b></a></b>
+					<b><a href="/../accounts/profile/{{follows}}" color="black"><b><font style="font-size:20px" color="grey">{{follows}}</font></b></a></b>
 				</p>
 			{% endfor %}
 			<h2>Followers <font color="blue">{{user.userprofile.followed_by.count}}</font></h2>
@@ -176,7 +176,7 @@
 			{% if follower == user.username %}
 			{% else %}
 				<p>
-					<b><a href="/../accounts/profile/{{follower}}" color="black"><b><font color="black">{{follower}}</font></b></a></b>
+					<b><a href="/../accounts/profile/{{follower}}" color="black"><b><font style="font-size:20px" color="grey">{{follower}}</font></b></a></b>
 				</p>
 			{% endif %}
 			{% endfor %}
