@@ -53,8 +53,8 @@
         <div id="navbar" class="navbar-collapse collapse">
 	  	{% csrf_token %}
 	  	          <form action="/logout" name='Logout' class="navbar-form navbar-right">
-            <input type="submit"  class="navbar-right btn btn-success" value="Logout">
-          </form>
+	           		 <input type="submit"  class="navbar-right btn btn-success" value="Logout">
+       			   </form>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
@@ -113,9 +113,9 @@
                                 <a href="/../accounts/profile/{{post.author.username}}"><font color="gray">{{post.author.username}}</font></a>
                                 <a href="{% url 'post_detail' pk=post.pk %}">
                                 {{ post.published_date|date:"h:i a M d, Y"}}</a>
-				<form action="retweet">
+				<a href ="/post/{{post.pk}}/retweet">
 			       	    <input type="submit" class="btn btn-success btn-sm"  value="retweet" style="float:right;">
-			       	</form>
+			       	</a>
                             </p>
 				<p>
 				{% if post.embedURL %}
@@ -151,9 +151,9 @@
                                 <a href="/../accounts/profile/{{post.author.username}}"><font color="gray">{{post.author.username}}</font></a>
                                 <a href="{% url 'post_detail' pk=post.pk %}">
                                 {{ post.published_date|date:"h:i a M d, Y"}}</a>
-				<form action="retweet">
+				<a href ="/post/{{post.pk}}/retweet">
 			       	    <input type="submit" class="btn btn-success btn-sm"  value="retweet" style="float:right;">
-			       	</form>
+			       	</a>
                             </p>
 				<p>
 				{% if post.embedURL %}
