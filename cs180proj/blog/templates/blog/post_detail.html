@@ -78,7 +78,7 @@
                 {{ post.published_date }}
             </div>
 	<form action="retweet">
-       	    <input type="submit" class="btn btn-success btn-sm"  value="retweet">
+       	    <input type="submit" class="btn btn-success btn-sm"  value="retweet" style="float:right;">
        	</form>
         {% endif %}
         <!-- Checks that user is the author or admin before allowing edit/deletion -->
@@ -94,10 +94,16 @@
 		<h1>{{ post.title }}</h1>
 	<p>
 	{% if post.embedURL %}
-	<img src={{post.embedURL}} alt="not valid brahhh"  width:100%  height:100% max-width="600" max-height="600">
+	<a href="{{post.embedURL}}">
+		<img src={{post.embedURL}} alt="not valid brahhh"  style="max-width: 600px;max-height: 600px">
+	</a>
 	{% endif %}	
 	</p>
         <p>{{ post.text|linebreaks }}</p>
+                 <p> <!--Show the posts's number, add a button to redirect to the page -->
+                      <a href="/blog/{{post.tags}}">Tag: {{post.tags}}</a>
+                </p>
+
     </div>
 
     <!--Comments section-->
@@ -109,7 +115,9 @@
             <strong>{{comment.author}}</strong>
 			<p>
 				{% if post.embedURL %}
-				<img src={{post.embedURL}} alt="not valid brahhh"  width:100%  height:100% max-width="600" max-height="600">
+				<a href="{{post.embedURL}}">
+				<img src={{post.embedURL}} alt="not valid brahhh"  style="max-width: 600px;max-height: 600px">
+				</a>
 				{% endif %}	
 			</p>
             <p>{{comment.text|linebreaks}}</p>

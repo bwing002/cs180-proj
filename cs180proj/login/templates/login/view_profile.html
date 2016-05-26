@@ -80,6 +80,9 @@
 			<form action="unfollow">
         		    <input type="submit"  class="btn btn-warning btn-sm" value="Unfollow">
         		</form>
+			<form action="/accounts/profile">
+				<input type="submit"  class="btn btn-success btn-sm" value="Back to Profile">
+			</form>
 
 
 
@@ -116,17 +119,22 @@
                                 <a href="/../accounts/profile/{{post.author.username}}"><font color="gray">{{post.author.username}}</font></a>
                                 <a href="{% url 'post_detail' pk=post.pk %}">
                                 {{ post.published_date|date:"h:i a M d, Y"}}</a>
+				<form action="retweet">
+			       	    <input type="submit" class="btn btn-success btn-sm"  value="retweet" style="float:right;">
+			       	</form>
                             </p>
 				<p>
 				{% if post.embedURL %}
-				<img src={{post.embedURL}} alt="not valid brahhh"  width:100%  height:100% max-width="600" max-height="600">
+				<a href="{{post.embedURL}}">
+				<img src={{post.embedURL}} alt="not valid brahhh"  style="max-width: 600px;max-height: 600px">
+				</a>
 				{% endif %}
 				</p>
 				<p>
                                 {{ post.text|linebreaks }}
                             </p>
                             <p> <!--Show the posts's number, add a button to redirect to the page -->
-                                <a href="/post/{{post.pk}}">Post #{{post.pk}}</a>
+                                <a href="/blog/{{post.tags}}">Tag: {{post.tags}}</a>
                             </p>
 						</div>
         	    </div>
@@ -145,18 +153,24 @@
                                 <a href="/../accounts/profile/{{post.author.username}}"><font color="gray">{{post.author.username}}</font></a>
                                 <a href="{% url 'post_detail' pk=post.pk %}">
                                 {{ post.published_date|date:"h:i a M d, Y"}}</a>
+				<form action="retweet">
+			       	    <input type="submit" class="btn btn-success btn-sm"  value="retweet" style="float:right;">
+			       	</form>
                             </p>
 				<p>
 				{% if post.embedURL %}
-				<img src={{post.embedURL}} alt="not valid brahhh"  width:100%  height:100% max-width="600" max-height="600">
+				<a href="{{post.embedURL}}">
+				<img src={{post.embedURL}} alt="not valid brahhh"  style="max-width: 600px;max-height: 600px">
+				</a>
 				{% endif %}
 				</p>
 							<p>
                                 {{ post.text|linebreaks }}
                             </p>
                             <p> <!--Show the posts's number, add a button to redirect to the page -->
-                                <a href="/post/{{post.pk}}">Post #{{post.pk}}</a>
+                                <a href="/blog/{{post.tags}}">Tag: {{post.tags}}</a>
                             </p>
+
 						</div>
         	    </div>
                 <a href="{% url 'blog.views.post_detail' pk=post.pk %}">Comments: {{post.comments.count}}</a>
